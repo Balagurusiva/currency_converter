@@ -24,11 +24,11 @@ const App = () => {
   return (
     <Container maxWidth="md" sx={BoxStyle}>
       <Typography variant='h5' sx={{ marginBottom: '2rem' }}>Currency converstion</Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} > 
         <InputAmount />
-        <SelectCountry value={fromCurrency} setVal  />
+        <SelectCountry value={fromCurrency} setValue={setFromCurrency}  label="From"/>
         <SwitchCurrency />
-        <SelectCountry />
+        <SelectCountry value = {toCurrency} setValue = {setToCurrency} label="To"/>
       </Grid>
     </Container>
   )

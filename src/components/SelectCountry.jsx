@@ -3,7 +3,8 @@ import { Grid,TextField} from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete';
 import useAxios from '../../hooks/useAxios';
 
-const SelectCountry = () => {
+const SelectCountry = (props) => {
+  const {label,value,setValue} = props
   const [data,loader,error] = useAxios("https://restcountries.com/v3.1/all")
   
    if(loader){
@@ -13,6 +14,7 @@ const SelectCountry = () => {
       </Grid>
     )
    }
+ 
 
    if(error){
     return "something went wrong"
@@ -26,10 +28,13 @@ const SelectCountry = () => {
   return (
      <Grid item xs={12} md={3}>
         <Autocomplete
-          value  ="option1"
+          value  ={value}
+          onChange={(event,newValue)=>{
+            setValue(newValue)
+          }}
            options ={ dataCountries} 
            renderInput={(params) => (
-           <TextField {...params}  label="from"  />
+           <TextField {...params}  label={label}  />
         )}   
       />
      </Grid>
